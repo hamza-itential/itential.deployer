@@ -189,7 +189,10 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: ${{ needs.provision.outputs.themis-artifact-name }}
-        path: themis/
+        path: downloaded-artifact
+
+    - name: Move Themis to expected location
+      run: mv downloaded-artifact/themis ./themis
 
     - name: Install Themis Python script dependencies
       working-directory: themis
@@ -279,7 +282,10 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: ${{ needs.provision.outputs.themis-artifact-name }}
-        path: themis/
+        path: downloaded-artifact
+
+    - name: Move Themis to expected location
+      run: mv downloaded-artifact/themis ./themis
 
     - name: Terminate EC2 instances
       working-directory: themis/tofu_aws
