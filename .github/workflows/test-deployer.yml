@@ -301,7 +301,7 @@ jobs:
       run: mv downloaded-artifact themis
 
     - name: Initialize OpenTofu
-      working-directory: themis
+      working-directory: themis/tofu_aws
       run: tofu init
 
     - name: Terminate EC2 instances
