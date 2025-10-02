@@ -205,7 +205,7 @@ jobs:
         path: downloaded-artifact
 
     - name: Move Themis to expected location
-      run: mv downloaded-artifact/${{ needs.provision.outputs.themis-artifact-name }}/themis ./themis
+      run: mv downloaded-artifact themis
 
     - name: Install Themis Python script dependencies
       working-directory: themis
@@ -298,7 +298,7 @@ jobs:
         path: downloaded-artifact
 
     - name: Move Themis to expected location
-      run: mv downloaded-artifact/${{ needs.provision.outputs.themis-artifact-name }}/themis ./themis
+      run: mv downloaded-artifact themis
 
     - name: Terminate EC2 instances
       working-directory: themis/tofu_aws
