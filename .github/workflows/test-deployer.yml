@@ -300,6 +300,10 @@ jobs:
     - name: Move Themis to expected location
       run: mv downloaded-artifact themis
 
+    - name: Initialize OpenTofu
+      working-directory: themis
+      run: tofu init
+
     - name: Terminate EC2 instances
       working-directory: themis/tofu_aws
       run: tofu destroy -var-file=tfvars/${{ inputs.design }}.tfvars -auto-approve
