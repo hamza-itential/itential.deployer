@@ -143,7 +143,7 @@ jobs:
     # Copies the vars file for the selected design to the working directory to be imported automatically
     - name: Set validated design
       working-directory: ../themis/tofu_aws
-      run: cp tfvars/${{ inputs.design }}.tfvars design.auto.tfvars
+      run: cp tfvars/${{ inputs.design }}.tfvars ./design.auto.tfvars
 
     - name: Create .tfvars file with additional job-specific variables
       working-directory: ../themis/tofu_aws
@@ -153,6 +153,10 @@ jobs:
         os_type = "${{ inputs.os-type }}"
         os_version = "${{ inputs.os-version }}"
         EOF
+
+    - name: Verify directory structure
+      working-directory: ../themis/tofu_aws
+      run: ls -la
 
     - name: Generate OpenTofu execution plan
       working-directory: ../themis/tofu_aws
