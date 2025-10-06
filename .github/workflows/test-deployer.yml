@@ -143,20 +143,16 @@ jobs:
     # Copies the vars file for the selected design to the working directory to be imported automatically
     - name: Set validated design
       working-directory: ../themis/tofu_aws
-      run: cp tfvars/${{ inputs.design }}.tfvars ./design.auto.tfvars
+      run: cp tfvars/${{ inputs.design }}.tfvars design.auto.tfvars
 
     - name: Create .tfvars file with additional job-specific variables
       working-directory: ../themis/tofu_aws
       run: |
         cat > github_actions.auto.tfvars << 'EOF'
-        prefix = "github"
+        owner = "github"
         os_type = "${{ inputs.os-type }}"
         os_version = "${{ inputs.os-version }}"
         EOF
-
-    - name: Verify directory structure
-      working-directory: ../themis/tofu_aws
-      run: ls -la
 
     - name: Generate OpenTofu execution plan
       working-directory: ../themis/tofu_aws
@@ -179,7 +175,7 @@ jobs:
     - name: Wait for cloud init script to complete
       working-directory: ../themis
       run: ansible all -m wait_for -a "path=/var/log/cloud-init-finished.marker timeout=300" -i tofu_aws/hosts.json -v
-      
+
     - name: Run the deployer
       working-directory: ../themis
       run: >
