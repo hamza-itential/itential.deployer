@@ -13,11 +13,11 @@ jobs:
       matrix:
         design: [aio, minimal, ha2, asa]
         os-type: [rocky, rhel]
-        os-version: [8, 9]
+        os-version: ["8", "9"]
       fail-fast: false
     uses: ./.github/workflows/test-deployer.yml
     with:
       design: ${{ matrix.design }}
-      os-type: rocky
-      os-version: "9"
+      os-type: ${{ matrix.os-type }}
+      os-version: "${{ matrix.os-version }}"
     secrets: inherit
