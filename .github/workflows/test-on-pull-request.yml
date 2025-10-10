@@ -12,6 +12,8 @@ jobs:
     strategy:
       matrix:
         design: [aio, minimal, ha2, asa]
+        os-type: [rocky, rhel]
+        os-version: [8, 9]
       fail-fast: false
     uses: ./.github/workflows/test-deployer.yml
     with:
