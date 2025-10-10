@@ -154,6 +154,7 @@ jobs:
       working-directory: ../themis/tofu_aws
       run: |
         cat > github_actions.auto.tfvars << 'EOF'
+        profile = ""
         owner = "github"
         os_type = "${{ inputs.os-type }}"
         os_version = "${{ inputs.os-version }}"
