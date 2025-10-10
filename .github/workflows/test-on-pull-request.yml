@@ -6,7 +6,6 @@ on:
     branches:
       - pipeline-test
 
-
 jobs:
   run-test:
     strategy:
