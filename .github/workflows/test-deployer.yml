@@ -45,6 +45,25 @@ on:
       NEXUS_PASSWORD:
         required: true
 
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: The branch, tag, or SHA to checkout
+        required: true
+        type: string
+      design:
+        description: The validated design name
+        required: true
+        type: string
+      os-type:
+        description: The name of the operating system to use
+        required: true
+        type: string
+      os-version:
+        description: The version of the operating system to use
+        required: true
+        type: string
+
 
 jobs:
   test-deployer:
