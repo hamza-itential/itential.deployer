@@ -17,6 +17,9 @@ name: Test Deployer
 on:
   workflow_call:
     inputs:
+      ref:
+        required: true
+        type: string
       design:
         required: true
         type: string
@@ -56,6 +59,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        ref: ${{ inputs.ref }}
 
     - name: Update package lists
       run: sudo apt update
@@ -145,7 +150,7 @@ jobs:
       working-directory: ../themis/tofu_aws
       run: cp tfvars/${{ inputs.design }}.tfvars design.auto.tfvars
 
-    - name: Create .tfvars file with additional job-specific variables
+    - name: Set additional job-specific variables
       working-directory: ../themis/tofu_aws
       run: |
         cat > github_actions.auto.tfvars << 'EOF'

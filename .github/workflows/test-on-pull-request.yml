@@ -2,9 +2,9 @@ name: Test Deployer on Pull Request
 
 
 on:
-  push:
+  pull_request_target:
     branches:
-      - pipeline-test
+      - main
 
 
 jobs:
@@ -15,6 +15,7 @@ jobs:
       fail-fast: false
     uses: ./.github/workflows/test-deployer.yml
     with:
+      ref: ${{ github.event.pull_request.head.sha }}
       design: ${{ matrix.design }}
       os-type: rocky
       os-version: "9"
