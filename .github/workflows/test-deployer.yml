@@ -18,7 +18,7 @@ on:
   workflow_call:
     inputs:
       ref:
-        required: true
+        required: false
         type: string
       design:
         required: true
@@ -49,7 +49,7 @@ on:
     inputs:
       ref:
         description: The branch, tag, or SHA to checkout
-        required: true
+        required: false
         type: string
       design:
         description: The validated design name
